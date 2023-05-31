@@ -40,6 +40,7 @@ void loadMatrixFromFile(SparseMatrix *matrix, const char *filename) {
         printf("Erro ao abrir o arquivo.\n");
         return;
     }
+    
     int num_users, num_items;
     fscanf(file, "%d %d", &num_users, &num_items);
     initMatrix(matrix, num_users, num_items);
@@ -64,6 +65,17 @@ void printMatrix(SparseMatrix *matrix) {
     }
 }
 
+void recommendItems(SparseMatrix *matrix, int user_id) {
+    printf("\nRecomendações para o usuário %d:\n", user_id);
+    
+    for (int item_id = 0; item_id < matrix->num_items; item_id++) {
+        int rating = getRating(matrix, user_id, item_id);
+        if (rating == 0) {
+            printf("Item %d\n", item_id);
+        }
+    }
+}
+
 int main() {
     SparseMatrix matrix;
     const char *filename = "ratings.txt";
@@ -73,6 +85,15 @@ int main() {
     printf("\nMatriz Esparsa:\n");
     printMatrix(&matrix);
     
+    int user_id;
+    printf("\nDigite o ID do usuário para obter recomendações: ");
+    scanf("%d", &user_id);
+    
+    recommendItems(&matrix, user_id);
+    
+    printf("\nPressione Enter para sair...");
+    getchar();
+    getchar();
+    
     return 0;
 }
-   
