@@ -34,34 +34,12 @@ int getRating(SparseMatrix *matrix, int user_id, int item_id) {
     return matrix->ratings[user_id * matrix->num_items + item_id].rating;
 }
 
-void saveMatrixToFile(SparseMatrix *matrix, const char *filename) {
-    FILE *file = fopen(filename, "w");
-    if (file == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        return;
-    }
-    
-    fprintf(file, "%d %d\n", matrix->num_users, matrix->num_items);
-    
-    for (int i = 0; i < matrix->num_users; i++) {
-        for (int j = 0; j < matrix->num_items; j++) {
-            int rating = getRating(matrix, i, j);
-            if (rating != 0) {
-                fprintf(file, "%d %d %d\n", i, j, rating);
-            }
-        }
-    }
-    
-    fclose(file);
-}
-
 void loadMatrixFromFile(SparseMatrix *matrix, const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return;
     }
-    
     int num_users, num_items;
     fscanf(file, "%d %d", &num_users, &num_items);
     initMatrix(matrix, num_users, num_items);
@@ -88,36 +66,13 @@ void printMatrix(SparseMatrix *matrix) {
 
 int main() {
     SparseMatrix matrix;
-    int num_users, num_items;
     const char *filename = "ratings.txt";
     
-    printf("Digite o número de usuários: ");
-    scanf("%d", &num_users);
-    
-    printf("Digite o número de itens: ");
-    scanf("%d", &num_items);
-    
-    initMatrix(&matrix, num_users, num_items);
-    
-    printf("Digite as avaliações (usuário item avaliação):\n");
-    while (1) {
-        int user_id, item_id, rating;
-        scanf("%d %d %d", &user_id, &item_id, &rating);
-        
-        if (user_id == -1 && item_id == -1 && rating == -1) {
-            break;
-        }
-        
-        addRating(&matrix, user_id, item_id, rating);
-    }
-    
-    saveMatrixToFile(&matrix, filename);
-    
-    SparseMatrix loadedMatrix;
-    loadMatrixFromFile(&loadedMatrix, filename);
+    loadMatrixFromFile(&matrix, filename);
     
     printf("\nMatriz Esparsa:\n");
-    printMatrix(&loadedMatrix);
+    printMatrix(&matrix);
     
     return 0;
 }
+   
