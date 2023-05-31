@@ -87,10 +87,17 @@ int main() {
     printMatrix(&matrix);
     
     int user_id;
-    printf("\nDigite o ID do usuário para obter recomendações: ");
-    scanf("%d", &user_id);
+    char continuar;
     
-    recommendItems(&matrix, user_id);
+    do {
+        printf("\nDigite o ID do usuário para obter recomendações: ");
+        scanf("%d", &user_id);
+        
+        recommendItems(&matrix, user_id);
+        
+        printf("\nDeseja ver as recomendações para outro usuário? (s/n): ");
+        scanf(" %c", &continuar);
+    } while (continuar == 's' || continuar == 'S');
     
     printf("\nPressione Enter para sair...");
     getchar();
