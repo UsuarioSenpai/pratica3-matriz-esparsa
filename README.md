@@ -27,7 +27,7 @@ Para rodar a aplicação, siga as instruções abaixo:
 
 1. Baixe o repositório com a aplicação em seu computador.
 2. Coloque todos os arquivos em uma mesma pasta.
-3. Execute o arquivo Versão1.
+3. Execute o arquivo versao1 se estiver no linux, se estiver no windows execute o arquivo versao1.exe.
 
 ## Desenvolvedores/Contribuintes 🤝
 
