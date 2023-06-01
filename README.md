@@ -27,7 +27,7 @@ Para rodar a aplicação, siga as instruções abaixo:
 
 1. Baixe o repositório com a aplicação em seu computador.
 2. Coloque todos os arquivos em uma mesma pasta.
-3. Execute o arquivo (NOME DO ARQUIVO).
+3. Execute o arquivo Versão1.
 
 ## Desenvolvedores/Contribuintes 🤝
 
